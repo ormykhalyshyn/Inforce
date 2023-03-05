@@ -1,0 +1,35 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+button {
+    background-color: lightskyblue;
+    border:10px solid;
+    color: white;
+    text-align: center;
+    min-width:100px;
+    height:50px;
+}
+    button[disabled=disabled], button:disabled {
+
+        background-color: #cccccc;
+
+    }

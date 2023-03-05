@@ -1,0 +1,6 @@
+﻿@{
+    ViewData["Title"] = "Details";
+}
+<h1>Description of Url Shortener algorithm</h1>
+
+<p>This implementation uses a Dictionary<string, string> to map short URLs to their corresponding long URLs. The Shorten method retrieves the corresponding short URL and returns it. Otherwise, it generates a new short URL and adds it to the dictionary. The Expand method takes a short URL and returns the corresponding long URL by looking it up in the dictionary. The GenerateKey method generates a random six-character string to use as the short URL. This implementation uses a base URL of localhost, because we need to host our shortUrls and then they work correctly</p>

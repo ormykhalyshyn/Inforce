@@ -1,0 +1,83 @@
+﻿@model Dictionary<TaskI.Models.ShortUrl,String>
+
+@{
+    ViewData["Title"] = "Table";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Keys.First().OriginalUrl)
+            </th>
+            <th>
+                Shorted Urls
+            </th>
+            <th>
+
+            </th>
+            <th>
+                <a asp-action="Add"><button id="add" disabled>Add</button></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var (key, value) in Model)
+        {
+
+            <tr>
+                <td style="width:100px">
+                    <a target="_blank" href="@key.OriginalUrl"><button>@Html.DisplayFor(modelItem => key.OriginalUrl)</button></a>
+                </td>
+                <td style="width:100px">
+                    <a asp-controller="ShortUrls" target="_blank" asp-action="RedirectTo" asp-route-path="@value">
+                        <button>https://localhost:7163/ShortUrls/RedirectTo/@value</button>
+                    </a>
+                </td>
+                <td style="width:100px">
+                    <a asp-action="Details" asp-route-id="@key.Id">
+                        <button disabled name="details">Details</button>
+                    </a>
+                </td>
+                <td style="width:100px">
+                    <a asp-action="Delete" asp-route-id="@key.Id">
+                        <button disabled id="@key.UserId" name="delete">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+@{
+    var userid = Context.Session.GetInt32("UserId");
+
+    //var admin = Model.Keys.Where(x => x.UserId == userid).First().User.isAdmin;
+    @if (userid == null)
+    {
+        <script>
+            document.getElementsByName("details").forEach(detail => detail.disabled = true);
+            document.getElementsByName("delete").forEach(detail2 => detail2.disabled = true);
+            document.getElementById("add").disabled = true;
+        </script>
+    }
+    else
+    {
+        <script>
+            document.getElementsByName("details").forEach(detail => detail.disabled = false);
+
+            document.getElementById("add").disabled = false;
+
+            document.getElementById(@userid).disabled = false;
+
+        </script>
+    }
+    @if (ViewBag.isAdmin == true)
+    {
+        <script>
+            document.getElementsByName("delete").forEach(detail => detail.disabled = false);
+        </script>
+    }
+}

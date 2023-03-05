@@ -1,0 +1,45 @@
+﻿@model TaskI.Models.Users
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" id="username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input oninput="myFunction()" type="password" id="pass" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Login" id="login" disabled class="btn btn-primary" />
+
+            </div>
+            <br />
+            <div> <a asp-action="Index">Back to List</a> | <a asp-controller="Home" asp-action="Register">Register</a> </div>
+        </form>
+
+        
+
+    </div>
+
+</div>
+
+<script>
+    function myFunction() {
+        if (document.getElementById("pass").value != "" && document.getElementById("username").value != "")
+            document.getElementById("login").disabled = false;
+    }
+</script>  
